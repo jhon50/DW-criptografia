@@ -5,6 +5,7 @@
  */
 package br.controle.servlet;
 
+import classlibrary.MD5;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
@@ -21,14 +22,16 @@ public class VerificarLogin extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
+        HttpSession session = request.getSession();
+        
         String nome_user = request.getParameter("nome");
-        String senha_user = request.getParameter("senha");
+        String senha_user = (String) session.getAttribute("senha");
 
-        if (nome_user.equals("admin") && senha_user.equals("123")) {
-            HttpSession session = request.getSession();
+        if (nome_user.equals("admin") && senha_user.equals(MD5.generateHash("123"))) {
+            System.out.print("senhas são iguais");
             session.setAttribute("NomeUsuarioLogado", "admin");
             session.setAttribute("logado", "ok");
-            
             RequestDispatcher resposta = request.getRequestDispatcher("sucesso.jsp");
             resposta.forward(request, response);
         } else {
