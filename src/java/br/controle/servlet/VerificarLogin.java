@@ -29,7 +29,6 @@ public class VerificarLogin extends HttpServlet {
         String senha_user = (String) session.getAttribute("senha");
 
         if (nome_user.equals("admin") && senha_user.equals(MD5.generateHash("123"))) {
-            System.out.print("senhas são iguais");
             session.setAttribute("NomeUsuarioLogado", "admin");
             session.setAttribute("logado", "ok");
             RequestDispatcher resposta = request.getRequestDispatcher("sucesso.jsp");

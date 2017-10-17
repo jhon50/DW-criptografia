@@ -14,7 +14,7 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-@WebFilter(filterName = "Gerar_criptografia", servletNames = {"VerificarLogin"}, urlPatterns={"/login.jsp"})
+@WebFilter(filterName = "Gerar_criptografia", servletNames = {"VerificarLogin"}, urlPatterns={"/index.jsp"})
 public class Gerar_criptografia implements Filter {
 
 	public void doFilter(ServletRequest request, ServletResponse response,
